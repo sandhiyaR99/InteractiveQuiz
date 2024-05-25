@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <script src="
+https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/lib/index.min.js
+"></script>
+    <link href="
+https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css
+" rel="stylesheet">
+</head>
+
+<body class="text-center pt-8">
+    <h1 class="text-lg font-bold">Interactive Quiz</h1>
+    <div class="mt-4">
+        <p>1.What is capital of India</p>
+        <input type="radio" name="option1" value="Delhi">Delhi
+        <input type="radio" name="option1" value="Tamilnadu">Tamilnadu
+        <input type="radio" name="option1" value="Kerala">Kerala
+    </div>
+    <div class="mt-4">
+        <p>2.What is capital of Tamilnadu</p>
+        <input type="radio" name="option2" value="Nilgiris">Nilgiris
+        <input type="radio" name="option2" value="Chennai">Chennai
+        <input type="radio" name="option2" value="Coimbatore">Coimbatore
+    </div>
+    <div class="mt-4">
+        <p>3. Which place is Queen of hills</p>
+        <input type="radio" name="option3" value="Ooty">Ooty
+        <input type="radio" name="option3" value="Coonor">Coonor
+        <input type="radio" name="option3" value="Kerala">Kerala
+    </div>
+    <button id="submitbtn" type="button"
+        class="text-md font-bold mt-6 text-white bg-green-500 p-2 rounded-md">Submit</button>
+
+    <div id="resultpage" class="hidden fixed top-0 w-full h-full">
+        <p id="close" class="text-black text-right p-2 cursor-pointer text-2xl">X</p>
+        <div class="bg-gray-400 flex flex-col justify-center p-10 h-96">
+            <h1 class="text-xl font-bold">Interactive Quiz</h1>
+            <h2 class="text-lg font-semibold mt-2">Your quiz result</h2>
+            <p id="score">Score:</p>
+        </div>
+    </div>
+
+    <script>
+        let submit = document.getElementById("submitbtn")
+        submit.addEventListener("click", () => {
+            if (document.querySelector('input[name="option1"]:checked') === null ||
+                document.querySelector('input[name="option2"]:checked') === null ||
+                document.querySelector('input[name="option3"]:checked') === null) {
+                alert("Please select an option for all questions");
+            }
+            else {
+                const answer = {
+                    option1: 'Delhi',
+                    option2: 'Chennai',
+                    option3: 'Ooty'
+                }
+                let score = 0
+                const answer1 = document.querySelector('input[name="option1"]:checked').value
+                if (answer1 === answer.option1) {
+                    score++
+                }
+                const answer2 = document.querySelector('input[name="option2"]:checked').value
+                if (answer2 === answer.option2) {
+                    score++
+                }
+                const answer3 = document.querySelector('input[name="option3"]:checked').value
+                if (answer3 === answer.option3) {
+                    score++
+                }
+
+                document.getElementById("score").textContent = "Score: " + score;
+                document.getElementById("resultpage").classList.remove("hidden")
+            }
+        })
+        let close = document.getElementById("close")
+        close.addEventListener("click", () => {
+            document.getElementById("resultpage").classList.add("hidden")
+        })
+    </script>
+</body>
+
+</html>
